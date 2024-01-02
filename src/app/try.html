@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animation de bienvenue</title>
+    <style>
+        #welcome-text {
+            font-family: 'Autography', cursive;
+            font-size: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Animation de bienvenue</h1>
+    <div id="welcome-text"></div>
+
+    <script>
+        const welcomeText = "  Bienvenue !";
+        const textContainer = document.getElementById("welcome-text");
+
+        let index = 0;
+
+        function writeWelcomeText() {
+            if (index < welcomeText.length) {
+                textContainer.textContent += welcomeText.charAt(index);
+                index++;
+                setTimeout(writeWelcomeText, 120);
+            }
+        }
+        writeWelcomeText();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "Yokap",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

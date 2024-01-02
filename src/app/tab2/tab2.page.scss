@@ -1,0 +1,27 @@
+.top-section{
+    min-height: 150px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: var(--ion-color-secondary);
+    padding-bottom: 32px;
+    .top-menu{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+    }
+    ion-icon{
+        color: aliceblue;
+    }
+    .head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        font-weight: bolder;
+    }
+}
+.save{
+    position: absolute;
+    align-items: center;
+    margin-top: 500px;
+}

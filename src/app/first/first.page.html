@@ -1,0 +1,15 @@
+<ion-content *ngIf="isFirstLaunch" class="welcome-container">
+  <div class="welcome-text">
+    <h1>Bienvenue dans l'application</h1>
+    <!-- Votre texte d'animation ici -->
+  </div>
+  <ion-input
+    type="text"
+    id="username-input"
+    [(ngModel)]="username"
+    placeholder="Votre nom d'utilisateur"
+    class="username-input"
+    (keyup.enter)="saveUsername()"
+  ></ion-input>
+  <ion-button expand="full" (click)="saveUsername()">Continuer</ion-button>
+</ion-content>

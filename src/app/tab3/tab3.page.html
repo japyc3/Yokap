@@ -1,0 +1,40 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title color="secondary">
+      Paramètres
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+<div align="center">
+  <ion-avatar>
+    <img src="../../assets/avatar.png" alt="">
+  </ion-avatar>
+  <ion-label color="secondary">McProsper</ion-label>
+</div>
+<ion-list>
+  <ion-item lines="full">
+    <ion-icon slot="start" name="notifications-outline"></ion-icon>
+    <ion-label>Activer notifications</ion-label>
+    <ion-toggle slot="end" [checked]="true" color="secondary"></ion-toggle>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+    <ion-label>Face ID</ion-label>
+    <ion-toggle slot="end" [checked]="false" color="secondary"></ion-toggle>
+  </ion-item>
+  <ion-item lines="full" detail>
+    <ion-icon slot="start" name="language-outline"></ion-icon>
+    <ion-label>Changer de langue</ion-label>
+  </ion-item>
+  <ion-item lines="full" detail>
+    <ion-icon slot="start" name="key-outline"></ion-icon>
+    <ion-label>Changer de username</ion-label>
+  </ion-item>
+  <ion-item lines="full" detail>
+    <ion-icon slot="start" name="help-buoy-outline"></ion-icon>
+    <ion-label>Aide</ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>

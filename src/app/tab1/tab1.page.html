@@ -1,0 +1,65 @@
+
+<ion-header class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-title mode="md" class="ion-no-padding">
+      <ion-label>
+        <ion-text color="primary">Salut</ion-text>
+        <p><ion-text color="primary" *ngIf="username"><strong>{{username}}</strong></ion-text></p>
+      </ion-label>
+    </ion-title>
+    <ion-avatar slot="end">
+      <img src="../../assets/avatar.png" alt="">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary">
+  <ion-row class="banners">
+    <div align="center">
+      <ion-label>
+        <span>Solde Total</span>
+        <p class="acc-amt" *ngIf="total"><ion-text>{{total}}</ion-text>
+          <br><ion-text>FCFA</ion-text>
+        </p>
+        <span>Numéro de compte</span>
+      </ion-label>
+    </div>
+  </ion-row>
+  <ion-list class="transactions">
+    <ion-list-header>
+      <ion-label color="secondary">Transactions</ion-label>
+    </ion-list-header>
+    <ion-row>
+      <ion-segment mode="ios" [value]="segmentValue" (ionChange)=segmentChanged()>
+        <ion-segment-button value="in">
+          <ion-label>Entrée</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="out">
+          <ion-label>Sortie</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="in">
+          <ion-label>Prêt</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="in">
+          <ion-label>Crédit</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-row>
+    <ion-item-group>
+      <ion-item lines="full">
+        <ion-thumbnail slot="start" class="ion-text-center">
+          <img src="" alt="">
+        </ion-thumbnail>
+        <ion-label>
+          <ion-text>{{typeTransaction}}</ion-text>
+          <p>
+            <ion-text>
+              {{dateTransaction}}
+            </ion-text>
+          </p>
+        </ion-label>
+        <ion-text slot="end" color="secondary">{{priceTransaction}} FCFA</ion-text>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

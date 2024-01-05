@@ -1,12 +1,19 @@
-
-
-<ion-content class="ion-padding ion-text-center" color="primary">
-<img src="../../assets/Yokap.png" class="logo">
-<div class="title">
-  <h2>Bienvenue !</h2>
-  <p>Profitez de notre expérience...</p>
-</div>
-<div class="ion-margin-top">
-  <ion-button expand="block" class="ion-margin-top" color="secondary" fill="outline" (click)="connection()">CONNEXION</ion-button>
-</div>
+<ion-content>
+  <header class="header">
+    <img src="../../assets/Yokap.png" class="logo">
+    <ion-text color="primary">
+      <h2 class="title">Yokapp</h2>
+      <small class="subtitle">Votre argent n'a jamais été aussi sécurisé</small>
+    </ion-text>
+  </header>
+  <main class="content">
+    <ion-text color="light">
+      <h4 class="title">S'authentifier</h4>
+    </ion-text>
+    <form action="" [formGroup]="userForm">
+      <ion-input label="Nom d'utilisateur" label-placement="floating" fill="solid" placeholder="Entrer un nom d'utilisateur" formControlName="username"></ion-input>
+      <ion-input type="password" label="Mot de passe" label-placement="floating" fill="solid" placeholder="********" formControlName="password"></ion-input>
+      <ion-button type="submit" expand="block" color="tertiary" (click)="login()" class="loginBtn">Connexion</ion-button>
+    </form>
+  </main>
 </ion-content>

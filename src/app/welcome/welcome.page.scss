@@ -1,7 +1,38 @@
-h2{
-    color: var(--ion-color-secondary);
+.header{
+    height: 45%;
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .logo{
+        height: 25vh;
+    }
+    .title{
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: .2rem;
+    }
+    .subtitle{
+        word-spacing: 0.1rem;
+        font-style: oblique;
+    }
 }
-p{
-    color: var(--ion-color-secondary);
+.content{
+    height: 55%;
+    padding: 2rem;
+    background: linear-gradient(0deg, rgba(39,194,158,1) 50%, rgba(56,163,127,1) 100%);
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    .title{
+        text-align: center;
+    }
+    ion-input{
+        margin: 2rem 0;
+    }
+    .loginBtn{
+        --padding-top: 1rem;
+        --padding-bottom: 1rem;
+        margin-top: 5rem;
+    }
 }
-

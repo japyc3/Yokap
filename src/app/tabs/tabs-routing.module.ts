@@ -4,37 +4,28 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'dashboard',
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
       {
-        path: 'tab2',
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'operations',
         loadChildren: () => import('../operation/operation.module').then(m => m.OperationPageModule)
       },
       {
-        path: 'tab3',
+        path: 'settings',
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
-      },
-      {
-        path: 'welcome',
-        loadChildren: () => import('../welcome/welcome.module').then( m => m.WelcomePageModule)
-      },
-      {
-        path: '',
-        redirectTo: '/tabs/welcome',
-        pathMatch: 'full'
       }
     ]
   },
-  {
-    path: '',
-    redirectTo: '/tabs/welcome',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({

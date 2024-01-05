@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
-import anime from 'animejs/lib/anime.es.js';
-import { OperationsService } from '../services/operations.service';
+import { Storage } from '@ionic/storage-angular'
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,17 +11,11 @@ import { OperationsService } from '../services/operations.service';
 
 export class Tab1Page implements OnInit {
 
-  username!: string
-  segmentValue!: number
-  event: any
+  user!:User
   total!: number
-  typeTransaction!: string
-  dateTransaction!: Date
-  priceTransaction!: number
-  value: any = ""
 
-  constructor(private storage: Storage, private storage2: Storage, private activatedRoute: ActivatedRoute, private operationService: OperationsService) {
-
+  constructor(private userService:UserService, private storage2: Storage, ) {
+    this.user = userService.getUser();
   }
 
   async ngOnInit() {
@@ -33,18 +26,6 @@ export class Tab1Page implements OnInit {
       }
     });
 
-    await this.storage.get('username').then((username) => {
-      if (username) {
-        this.username = username;
-      }
-    });
-
-  }
-
-
-  segmentChanged() {
-    // console.log(event);
-    // this.segmentValue = event.detail.value;
   }
 
 }

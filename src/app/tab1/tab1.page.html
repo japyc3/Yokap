@@ -1,65 +1,152 @@
-
 <ion-header class="ion-no-border">
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="primary">
     <ion-title mode="md" class="ion-no-padding">
-      <ion-label>
-        <ion-text color="primary">Salut</ion-text>
-        <p><ion-text color="primary" *ngIf="username"><strong>{{username}}</strong></ion-text></p>
-      </ion-label>
+      <h4 class="title">Salut {{user.username}}</h4>
     </ion-title>
     <ion-avatar slot="end">
-      <img src="../../assets/avatar.png" alt="">
+      <ion-icon name="person-circle-outline" size="large"></ion-icon>
     </ion-avatar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="secondary">
-  <ion-row class="banners">
-    <div align="center">
-      <ion-label>
-        <span>Solde Total</span>
-        <p class="acc-amt" *ngIf="total"><ion-text>{{total}}</ion-text>
-          <br><ion-text>FCFA</ion-text>
-        </p>
-        <span>Numéro de compte</span>
-      </ion-label>
+<ion-content color="primary">
+  <div class="banners">
+    <div class="circle">
+      <ion-text class="ion-text-center">
+        <h5>Solde :</h5>
+        <h2>0 FCFA</h2>
+      </ion-text>
     </div>
-  </ion-row>
-  <ion-list class="transactions">
-    <ion-list-header>
-      <ion-label color="secondary">Transactions</ion-label>
-    </ion-list-header>
-    <ion-row>
-      <ion-segment mode="ios" [value]="segmentValue" (ionChange)=segmentChanged()>
-        <ion-segment-button value="in">
-          <ion-label>Entrée</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="out">
-          <ion-label>Sortie</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="in">
-          <ion-label>Prêt</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="in">
-          <ion-label>Crédit</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-row>
-    <ion-item-group>
-      <ion-item lines="full">
-        <ion-thumbnail slot="start" class="ion-text-center">
-          <img src="" alt="">
-        </ion-thumbnail>
-        <ion-label>
-          <ion-text>{{typeTransaction}}</ion-text>
-          <p>
-            <ion-text>
-              {{dateTransaction}}
-            </ion-text>
-          </p>
-        </ion-label>
-        <ion-text slot="end" color="secondary">{{priceTransaction}} FCFA</ion-text>
+  </div>
+  <div class="transactions">
+    <ion-text class="ion-text-center" color="primary">
+      <h3>Mes Opérations</h3>
+    </ion-text>
+    <ion-segment mode="ios" value="in" #segement>
+      <ion-segment-button value="in">
+        <ion-label>Entrée</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="out">
+        <ion-label>Sortie</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="loan">
+        <ion-label>Prêt</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="credit">
+        <ion-label>Crédit</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    
+    <!-- List Entrée -->
+    <ion-list lines="none" *ngIf="segement.value === 'in'">
+      <ion-list-header>
+        <ion-label color="primary">Entrée</ion-label>
+      </ion-list-header>
+      <ion-item color="light">
+        <ion-icon name="download-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
       </ion-item>
-    </ion-item-group>
-  </ion-list>
+      <ion-item color="light">
+        <ion-icon name="download-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+      <ion-item color="light">
+        <ion-icon name="download-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+    </ion-list>
+
+    <!-- List sortie -->
+    <ion-list lines="none" *ngIf="segement.value === 'out'">
+      <ion-list-header>
+        <ion-label color="primary">Sortie</ion-label>
+      </ion-list-header>
+      <ion-item color="light">
+        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+      <ion-item color="light">
+        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+      <ion-item color="light">
+        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+    </ion-list>
+
+    <!-- List prêt -->
+    <ion-list lines="none" *ngIf="segement.value === 'loan'">
+      <ion-list-header>
+        <ion-label color="primary">Prêt</ion-label>
+      </ion-list-header>
+      <ion-item color="light">
+        <ion-icon name="enter-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+      <ion-item color="light">
+        <ion-icon name="enter-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+      <ion-item color="light">
+        <ion-icon name="enter-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+    </ion-list>
+
+    <!-- List crédit -->
+    <ion-list lines="none" *ngIf="segement.value === 'credit'">
+      <ion-list-header>
+        <ion-label color="primary">Crédit</ion-label>
+      </ion-list-header>
+      <ion-item color="light">
+        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+      <ion-item color="light">
+        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+      <ion-item color="light">
+        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
+        <ion-text color="primary" class="ion-text-end item-value">
+          <h5>0 FCFA</h5>
+          <p>Le 12/12/2023 à 12H13</p>
+        </ion-text>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

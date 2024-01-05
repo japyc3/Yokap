@@ -16,7 +16,7 @@ import { Drivers, Storage } from '@ionic/storage';
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot({
     name: '__mydb',
-    driverOrder: [Drivers.LocalStorage]
+    driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
   }), BrowserAnimationsModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

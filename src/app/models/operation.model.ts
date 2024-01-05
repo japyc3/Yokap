@@ -1,6 +1,10 @@
 export interface Operation {
-    type: string;
+    type: OperationType;
     amount: number;
-    libelle: string;
+    note: string;
     date: Date;
+}
+
+export enum OperationType{
+    IN, OUT, LOAD, CREDIT
 }

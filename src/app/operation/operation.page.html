@@ -1,35 +1,34 @@
-<ion-header [translucent]="true">
-
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title color="light">Opérations</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-<div class="title">
-  <h4 color="secondary">Faites votre opération</h4>
-<p color="primary">Commencez !</p>
-</div>
-<ion-list>
-  <ion-item>
-    <ion-label>Type d'opération</ion-label>
-    <ion-select [(ngModel)]="operationType">
-      <ion-select-option value="entrée">Enregistrer une entrée</ion-select-option>
-      <ion-select-option value="sortie">Enregistrer une sortie</ion-select-option>
-      <ion-select-option value="pret">Faire un prêt</ion-select-option>
-      <ion-select-option value="credit">Emprunter un crédit</ion-select-option>
-      <ion-select-option value="epargne">Epargner</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Montant</ion-label>
-    <ion-input type="number" [(ngModel)]="amount"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Libellé</ion-label>
-    <ion-input type="text" [(ngModel)]="label"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Date d'enregistrement</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="date"></ion-datetime>
-  </ion-item>
-</ion-list>
-<div class="ion-margin-top"><ion-button expand="block" (click)="sauvegarder()" color="secondary">Sauvegarder</ion-button></div>
+<ion-content class="ion-padding" color="primary">
+  <div class="container">
+    <ion-text color="primary" class="ion-text-center">
+      <h5>Effectuez une transaction</h5>
+    </ion-text>
+    <form action="#" class="form" [formGroup]="operationForm">
+      <ion-item class="input">
+        <ion-icon name="options-outline" slot="start"></ion-icon>
+        <ion-select label="Type d'opération" labelPlacement="stacked" formControlName="type">
+          <ion-select-option value="in">Effectuer un dépôt d'argent</ion-select-option>
+          <ion-select-option value="out">Effectuer un retrait d'argent</ion-select-option>
+          <ion-select-option value="load">Effectuer un prêt</ion-select-option>
+          <ion-select-option value="credit">Emprunter un crédit</ion-select-option>
+          <ion-select-option value="epargne">Mettre en Epargne</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="input">
+        <ion-icon slot="start" name="cash-outline"></ion-icon>
+        <ion-input label="Montant" labelPlacement="stacked" type="number" formControlName="amount"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-icon slot="start" name="document-outline"></ion-icon>
+        <ion-input label="Note" labelPlacement="stacked" type="text" formControlName="note"></ion-input>
+      </ion-item>
+      <ion-button type="submit" expand="block" (click)="save()" color="primary">Enregistrer</ion-button>
+    </form>
+  </div>
 </ion-content>

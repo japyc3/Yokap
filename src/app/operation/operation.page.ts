@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
-import { Platform } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
 import { OperationsService } from '../services/operations.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Operation, OperationType } from '../models/operation.model';
 
 @Component({
   selector: 'app-operation',
@@ -13,42 +12,55 @@ import { OperationsService } from '../services/operations.service';
 
 export class OperationPage implements OnInit {
 
-  amount!: number
-  operationType!: String
-  label!: String
-  date!: string
-  total: number = 0
-  libelle!: string
+  operationForm:FormGroup = new FormGroup({
+    type: new FormControl(),
+    amount: new FormControl(),
+    note: new FormControl()
+  });
 
-  constructor(private alertController: AlertController, public platform: Platform, private modalController: ModalController, private storage: Storage, private storage3: Storage, private storage2: Storage, private router: Router, private operationsService: OperationsService) { }
+  constructor(private router: Router, private operationsService: OperationsService) { }
   
-  async ngOnInit() {
-    // await this.storage1.create();
-    await this.storage3.create();
-    this.date = new Date().toISOString();
+  ngOnInit() {
   }
 
-  async sauvegarder() {
-
-    console.log("Type d'opération : " + this.operationType + '\n', "Montant : " + this.amount + ' FCFA\n', "Libellé : " + this.label + '\n', "Date d'enregistrement : " + this.date);
-    if (this.operationType === 'entrée' || this.operationType === 'epargne' || this.operationType === 'credit') {
-      this.total += this.amount;
-    } else if ((this.operationType === 'sortie' || this.operationType === 'pret') && this.amount < this.total) {
-      this.total -= this.amount;
-    } else if ((this.operationType === 'sortie' || this.operationType === 'pret') && this.amount > this.total) {
-      alert("Solde insuffisant !!!!");
+  save() {
+    let type;
+    switch(this.operationForm.value.type) {
+      case 'in': {
+        type = OperationType.IN;
+        break;
+      }
+      case 'out': {
+        type = OperationType.OUT;
+        break;
+      }
+      case 'load': {
+        type = OperationType.LOAD;
+        break;
+      }
+      case 'credit': {
+        type = OperationType.CREDIT;
+        break;
+      }
+      case 'epargne': {
+        type = OperationType.OUT;
+        break;
+      }
+      default: type = OperationType.IN
     }
-    // handler: (data) => {
-    //   if(data.total) {
-    //     this.saveTotal(data.total);
-    //   }
-    // }
-  // await this.operationsService.set('Total', this.total);
-    this.storage3.set('total', this.total);
-    console.log("Total : " + this.total + " FCFA");
+
+    let amount = type == OperationType.OUT ? -1*this.operationForm.value.amount : this.operationForm.value.amount;
+    const operation:Operation = {
+      type: type,
+      amount: amount,
+      date: new Date(),
+      note: this.operationForm.value.note
+    };
+
+    this.operationsService.saveOperation(operation).then(resp => {
+      if(resp.status === 'OK')this.router.navigate(['/home/dashboard']);
+      this.operationForm.reset();
+    });
   }
-  
-  saveTotal(){}
-  // this.storage2.set('libelle', this.libelle);
 
 }

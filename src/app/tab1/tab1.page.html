@@ -14,7 +14,7 @@
     <div class="circle">
       <ion-text class="ion-text-center">
         <h5>Solde :</h5>
-        <h2>0 FCFA</h2>
+        <h2>{{total}} FCFA</h2>
       </ion-text>
     </div>
   </div>
@@ -22,7 +22,7 @@
     <ion-text class="ion-text-center" color="primary">
       <h3>Mes Opérations</h3>
     </ion-text>
-    <ion-segment mode="ios" value="in" #segement>
+    <ion-segment mode="ios" value="in" #segment>
       <ion-segment-button value="in">
         <ion-label>Entrée</ion-label>
       </ion-segment-button>
@@ -38,113 +38,57 @@
     </ion-segment>
     
     <!-- List Entrée -->
-    <ion-list lines="none" *ngIf="segement.value === 'in'">
+    <ion-list lines="none" *ngIf="segment.value === 'in'">
       <ion-list-header>
         <ion-label color="primary">Entrée</ion-label>
       </ion-list-header>
-      <ion-item color="light">
+      <ion-item color="light" *ngFor="let operation of list.in">
         <ion-icon name="download-outline" slot="start" color="secondary"></ion-icon>
         <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="download-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="download-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
+          <h5>{{operation.amount}} FCFA</h5>
+          <p>Le {{operation.date | date:'dd/MM/YYYY'}} à {{operation.date | date:'HH:mm'}}</p>
         </ion-text>
       </ion-item>
     </ion-list>
 
     <!-- List sortie -->
-    <ion-list lines="none" *ngIf="segement.value === 'out'">
+    <ion-list lines="none" *ngIf="segment.value === 'out'">
       <ion-list-header>
         <ion-label color="primary">Sortie</ion-label>
       </ion-list-header>
-      <ion-item color="light">
+      <ion-item color="light" *ngFor="let operation of list.out">
         <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
         <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
+          <h5>{{operation.amount}} FCFA</h5>
+          <p>Le {{operation.date | date:'dd/MM/YYYY'}} à {{operation.date | date:'HH:mm'}}</p>
         </ion-text>
       </ion-item>
     </ion-list>
 
     <!-- List prêt -->
-    <ion-list lines="none" *ngIf="segement.value === 'loan'">
+    <ion-list lines="none" *ngIf="segment.value === 'loan'">
       <ion-list-header>
         <ion-label color="primary">Prêt</ion-label>
       </ion-list-header>
-      <ion-item color="light">
+      <ion-item color="light" *ngFor="let operation of list.load">
         <ion-icon name="enter-outline" slot="start" color="secondary"></ion-icon>
         <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="enter-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="enter-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
+          <h5>{{operation.amount}} FCFA</h5>
+          <p>Le {{operation.date | date:'dd/MM/YYYY'}} à {{operation.date | date:'HH:mm'}}</p>
         </ion-text>
       </ion-item>
     </ion-list>
 
     <!-- List crédit -->
-    <ion-list lines="none" *ngIf="segement.value === 'credit'">
+    <ion-list lines="none" *ngIf="segment.value === 'credit'">
       <ion-list-header>
         <ion-label color="primary">Crédit</ion-label>
       </ion-list-header>
-      <ion-item color="light">
+      <ion-item color="light" *ngFor="let operation of list.credit">
         <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
         <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
-        </ion-text>
-      </ion-item>
-      <ion-item color="light">
-        <ion-icon name="exit-outline" slot="start" color="secondary"></ion-icon>
-        <ion-text color="primary" class="ion-text-end item-value">
-          <h5>0 FCFA</h5>
-          <p>Le 12/12/2023 à 12H13</p>
+          <h5>{{operation.amount}} FCFA</h5>
+          <p>Le {{operation.date | date:'dd/MM/YYYY'}} à {{operation.date | date:'HH:mm'}}</p>
         </ion-text>
       </ion-item>
     </ion-list>

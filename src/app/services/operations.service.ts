@@ -1,39 +1,74 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
+import { StorageService } from './storage.service';
+import { Operation, OperationType } from '../models/operation.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class OperationsService {
+  private TABLE_NAME = "listOperations_"
 
-  transactions: any[] = [];
-  private _storage: Storage | null = null;
-  constructor(private storage: Storage) { }
+  constructor(private storeService: StorageService, private userService:UserService) {
+  }
 
-  // async init() {
-  //   If using, define drivers here: await this.storage.defineDriver(/*...*/);
-  //   const storage = await this.storage.create();
-  //   this._storage = storage;
-  // }
+  async saveOperation(operation:Operation){
+    let list = this.getList();
+    (await list).push(operation);
+    const response = await this.storeService.saveItem(this.TABLE_NAME + this.userService.getUser().username, list).then(() => {
+      return {
+        status: 'OK',
+        message: 'Enregistrement effectué'
+      }
+    });
+    return response;
+  }
 
-  // public async set(key: string, value: any) {
-  //   let result = this._storage?.set(key, value);
-  //   console.log(result);
-  // }
+  async getList() {
+    const response = await this.storeService.getItem(this.TABLE_NAME + this.userService.getUser().username).then((val:Operation[]) => {
+      if(val){
+        return val;
+      }
+      return []
+    });
+    return response;
+  }
 
-  // public async get(key: string) {
-  //   let value = this._storage?.get(key);
-  //   console.log(value);
-  //   return value;
-  // }
+  async getListByType(type:OperationType) {
+    const response = await this.storeService.getItem(this.TABLE_NAME + this.userService.getUser().username).then((val:Operation[]) => {
+      if(!val) {
+        return []
+      }
+      switch(type){
+        case OperationType.IN : {
+          return val.filter(val => val.type === type);
+        }
+        case OperationType.OUT : {
+          return val.filter(val => val.type === type);
+        }
+        case OperationType.LOAD : {
+          return val.filter(val => val.type === type);
+        }
+        case OperationType.CREDIT : {
+          return val.filter(val => val.type === type);
+        }
+        default: return []
+      }
+    });
+    return response;
+  }
 
-  // ajouterTransaction(transaction: any) {
-  //   this.transactions.push(transaction);
-  // }
-
-  // getTransactions() {
-  //   return this.transactions;
-  // }
-
+  async getTotal() {
+    const response = await this.storeService.getItem(this.TABLE_NAME + this.userService.getUser().username).then((val:Operation[]) => {
+      let total = 0;
+      if(val){
+        for(let operation of val){
+          total += operation.amount;
+        }
+      }
+      return total;
+    });
+    return response;
+  }
 }
